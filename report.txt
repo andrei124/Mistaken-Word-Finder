@@ -1,0 +1,64 @@
+
+         TEXT ANALYSIS REPORT
+
+
+
+  User : admin
+
+
+    -> File number : 1
+
+    -> File name : text1.txt
+
+    -> Text : This txte is an exemple of how this appliation works. It looks up every word in the text and determines whetr it is speled correctly or not. I have used a dictionary for checing the correctness of the text.It is a very efficient prorgam.It uses advanced daat structures to immplment the dictionary. 
+
+    -> Number of words in dictionary : 143091
+
+    -> Number of words in text : 54 
+
+    -> Mistaken words : 9 
+
+    -> Percentage of correctness : 83.3333%
+
+
+
+
+  User : admin
+
+
+    -> File number : 2
+
+    -> File name : text2.txt
+
+    -> Text : Binary searhc is an algoritm that uses the divide et impra techniqe to search a specifc elemnnt in an oredered aray.It has a logaritmic time ccomplexty and it doesnt work properly on unsorted arrayys.Anohter searching algorit is linaer serch, which looks up the entre array from beigining to the end to find the specfic element.
+
+    -> Number of words in dictionary : 143091
+
+    -> Number of words in text : 57 
+
+    -> Mistaken words : 19 
+
+    -> Percentage of correctness : 66.6667%
+
+
+
+
+  User : admin
+
+
+    -> File number : 3
+
+    -> File name : text3.txt
+
+    -> Text : There are very manny sorting algoritms.One of them is buble sort,wich is not so efficiemt.Quick sort and merge sort are the best sorting algorithms.They have a logaritmical time complexty and they are based on divide and concuerr.Another good sorting algorithm is count sort,wich is best suitd for smaler arrays.
+
+    -> Number of words in dictionary : 143091
+
+    -> Number of words in text : 55 
+
+    -> Mistaken words : 11 
+
+    -> Percentage of correctness : 80%
+
+
+

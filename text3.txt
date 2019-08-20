@@ -1,0 +1,1 @@
+There are very manny sorting algoritms.One of them is buble sort,wich is not so efficiemt.Quick sort and merge sort are the best sorting algorithms.They have a logaritmical time complexty and they are based on divide and concuerr.Another good sorting algorithm is count sort,wich is best suitd for smaler arrays.

@@ -1,0 +1,1 @@
+This txte is an exemple of how this appliation works. It looks up every word in the text and determines whetr it is speled correctly or not. I have used a dictionary for checing the correctness of the text.It is a very efficient prorgam.It uses advanced daat structures to immplment the dictionary. 
