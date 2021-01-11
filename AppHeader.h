@@ -2,79 +2,73 @@
 #define APPHEADER_H_INCLUDED
 
 
-#define SIZE 26   /// dimensiuhne tabel
-#define max_words 10000  /// dimensiune maxima text
-#define LENGTH 45 /// dimensiune maxima cuvant
-#define no_accounts 6 /// Nr. conturi
+#define SIZE 26   // table dimension
+#define max_words 10000  // maximum text size
+#define no_accounts 6 // number of accounts
 
 #include <conio.h>
 #include <stdio.h>
 
 
-struct node
-{
+struct node {
     char word[46];
     node *next;
 };
 
-class List
-{
+class List {
 
-   public:
+public:
 
     node *head;
 
     List();
+
     ~List();
 
     int get_List_Index(char *word);
+
     void Create();
+
     void Delete();
+
     void Insert_Node(char *word);
+
     void Out();
 };
 
-List::List(void)
-{
+List::List(void) {
     //std::cout << "New object has been created..." << '\n';
 }
 
-List::~List(void)
-{
+List::~List(void) {
     //std::cout << "Object has been deleted" << '\n';
 }
 
-void List::Create()
-{
+void List::Create() {
     head = NULL;
 }
 
-void List::Delete()
-{
+void List::Delete() {
     node *index = head;
 
-    while(index != NULL)
-    {
+    while (index != NULL) {
         node *aux = index;
         index = index->next;
-        delete(aux);
+        delete (aux);
     }
 }
 
-int List::get_List_Index(char *word)
-{
+int List::get_List_Index(char *word) {
     node *index = head;
-    while(index != NULL)
-    {
-        if(strcmp(index->word, word) == 0)return 1;
+    while (index != NULL) {
+        if (strcmp(index->word, word) == 0)return 1;
         index = index->next;
     }
 
     return 0;
 }
 
-void List::Insert_Node(char *word)
-{
+void List::Insert_Node(char *word) {
     node *new_node = new node;
     strcpy(new_node->word, word);
 
@@ -84,90 +78,82 @@ void List::Insert_Node(char *word)
 }
 
 
-struct Account
-{
+struct Account {
     char username[20];
     char password[10];
-}User[no_accounts];
+} User[no_accounts];
 
 
-   /// PROTOTIPURI
+// Function headers
 
 bool unload_dictionary(List table[]);
+
 void initialize(List table[]);
+
 unsigned int Hash(char c);
+
 void Intro();
+
 void Log_window(bool &k);
 
 
+// Sub-routines defs
 
-
-
-   /// Definitiile subprogramelor
-
-void Intro()
-{
-    for(int i = 0; i < 10; i++) std::cout << '\n';
-    for(int j = 0; j < 30; j++) std::cout << " ";
+void Intro() {
+    for (int i = 0; i < 10; i++) std::cout << '\n';
+    for (int j = 0; j < 30; j++) std::cout << " ";
 
     int consoleWidth = 50;
 
     std::cout << std::setw(consoleWidth / 2) << "MISTAKEN WORD FINDER" << '\n' << '\n' << '\n';
-    for(int j = 0; j < 35 ; j++) std::cout << " ";
-    std::cout << std::setw(3*consoleWidth / 8) << "WELCOME !!!" << '\n' << '\n' << '\n';
+    for (int j = 0; j < 35; j++) std::cout << " ";
+    std::cout << std::setw(3 * consoleWidth / 8) << "WELCOME !!!" << '\n' << '\n' << '\n';
 
     std::cout << "         >>>  " << "Press 'E' and then ENTER to log in" << '\n';
     std::cout << "         >>>  " << "Press other key and then ENTER to exit" << '\n' << '\n' << '\n';
 }
 
- void Log_window(bool &k,int &index)
-{
+void Log_window(bool &k, int &index) {
     int ok = 2, flag = 0, k1 = 0, user_attempts_remaining = 3, password_attempts_remaining = 3;
-    char u[20],p[10];
+    char u[20], p[10];
 
-    while(ok != 1 && user_attempts_remaining > 0)
-    {
-        std::cout <<  "   Username :  "; std::cin.get(u, 20); std::cin.get();
+    while (ok != 1 && user_attempts_remaining > 0) {
+        std::cout << "   Username :  ";
+        std::cin.get(u, 20);
+        std::cin.get();
 
-        for(int i = 0; i < no_accounts; i++)
-            if(strcmp(u, User[i].username) == 0)
-            {
+        for (int i = 0; i < no_accounts; i++)
+            if (strcmp(u, User[i].username) == 0) {
                 flag = 1;
                 ok--;
                 index = i;
                 break;
             }
 
-        user_attempts_remaining --;
-        if(flag != 1) std::cout << "   Invalid username ... Attempts remaining : " << user_attempts_remaining << '\n';
+        user_attempts_remaining--;
+        if (flag != 1) std::cout << "   Invalid username ... Attempts remaining : " << user_attempts_remaining << '\n';
 
     }
 
 
-    if(ok == 1)
-    {
-        while(ok != 0 && password_attempts_remaining > 0)
-        {
-            std::cout <<  "   Password :  ";
-            while((p[k1] = getch()) != '\r')
-            {
-                if(p[k1] != 0x08)
-                {
+    if (ok == 1) {
+        while (ok != 0 && password_attempts_remaining > 0) {
+            std::cout << "   Password :  ";
+            while ((p[k1] = getch()) != '\r') {
+                if (p[k1] != 0x08) {
                     std::cout << '*';
                     k1++;
-                }
-                else{
+                } else {
                     k1--;
-                    std::cout <<"\b \b";
+                    std::cout << "\b \b";
                 }
             }
-            p[k1]= '\0';
+            p[k1] = '\0';
 
-            password_attempts_remaining --;
+            password_attempts_remaining--;
 
-            if(strcmp(p ,User[index].password) == 0)ok--;
-            else
-            {
+            if (strcmp(p, User[index].password) == 0)ok--;
+            else {
                 std::cout << "   Wrong password ... Attempts remaining : " << password_attempts_remaining << '\n';
                 k1 = 0;
             }
@@ -175,47 +161,39 @@ void Intro()
         }
     }
 
-    if(ok == 0)
-    {
+    if (ok == 0) {
         std::cout << '\n' << '\n' << '\n' << '\n' << "   Log in succesful !!" << '\n' << '\n';
-        std::cout << "   Welcome " << User[index].username << " !" << '\n' <<'\n' << '\n' << '\n';
+        std::cout << "   Welcome " << User[index].username << " !" << '\n' << '\n' << '\n' << '\n';
         k = true;
-    }
-    else{
-        std::cout <<'\n' << "   Failed to log in" << '\n' << '\n';
+    } else {
+        std::cout << '\n' << "   Failed to log in" << '\n' << '\n';
         k = false;
     }
 
 }
 
 
-bool unload_dictionary(List table[])
-{
+bool unload_dictionary(List table[]) {
     int err = SIZE;
-    for(int i = 0; i < SIZE; i++)
-    {
+    for (int i = 0; i < SIZE; i++) {
         table[i].Delete();
-        err --;
+        err--;
     }
 
-    if(err == 0) return true;
+    if (err == 0) return true;
 
     return false;
 }
 
 
-void initialize(List table[])
-{
-    for(int i = 0; i < 26; i++)
+void initialize(List table[]) {
+    for (int i = 0; i < 26; i++)
         table[i].Create();
 }
 
 
-
-unsigned int Hash(char c)
-{
-    switch (c)
-    {
+unsigned int Hash(char c) {
+    switch (c) {
         case 'a':
         case 'A':
             return 0;
@@ -295,10 +273,10 @@ unsigned int Hash(char c)
         case 'Z':
             return 25;
 
-        default: return -1;
+        default:
+            return -1;
     }
 }
-
 
 
 #endif // APPHEADER_H_INCLUDED
